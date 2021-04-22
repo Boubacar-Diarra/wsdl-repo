@@ -1,0 +1,78 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://eaiwbmb01/EDD_SRV_eCoffre_V1_0.utils" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="eCoffre_v1" targetNamespace="http://eaiwbmb01/EDD_SRV_eCoffre_V1_0.utils">
+<wsdl:documentation/>
+<wsdl:types>
+<xsd:schema targetNamespace="http://eaiwbmb01/EDD_SRV_eCoffre_V1_0.utils">
+<xsd:element name="PossessionCoffre" type="tns:PossessionCoffre"/>
+<xsd:element name="PossessionCoffreResponse" type="tns:PossessionCoffreResponse"/>
+<xsd:complexType name="PossessionCoffre">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="PossessionCoffreRequest" nillable="true" type="tns:PossessionCoffreRequest"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="PossessionCoffreRequest">
+<xsd:sequence>
+<xsd:element name="codeFiliale" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="unbounded" name="listeCodeClient" nillable="true" type="tns:listeCodeClient"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="listeCodeClient">
+<xsd:sequence>
+<xsd:element name="codeClient" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="PossessionCoffreResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="PossessionCoffreResponse" nillable="true" type="tns:PossessionCoffreResponse2"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="PossessionCoffreResponse2">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="messageRetour" nillable="true" type="tns:messageRetour"/>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="listeCodeClient" nillable="true" type="tns:listeCodeClient2"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="messageRetour">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="code" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="libelle" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="type" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="source" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="listeCodeClient2">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="codeClient" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="PossessionCoffre_WSDL_PortType_PossessionCoffre">
+<wsdl:part name="parameters" element="tns:PossessionCoffre"/>
+</wsdl:message>
+<wsdl:message name="PossessionCoffre_WSDL_PortType_PossessionCoffreResponse">
+<wsdl:part name="parameters" element="tns:PossessionCoffreResponse"/>
+</wsdl:message>
+<wsdl:portType name="PossessionCoffre_WSDL_PortType">
+<wsdl:operation name="PossessionCoffre">
+<wsdl:input message="tns:PossessionCoffre_WSDL_PortType_PossessionCoffre"/>
+<wsdl:output message="tns:PossessionCoffre_WSDL_PortType_PossessionCoffreResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="EDD_SRV_eCoffre_V1_0_utils_PossessionCoffre_WSDL_Binder" type="tns:PossessionCoffre_WSDL_PortType">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PossessionCoffre">
+<soap:operation soapAction="EDD_SRV_eCoffre_V1_0_utils_PossessionCoffre_WSDL_Binder_PossessionCoffre" style="document"/>
+<wsdl:input>
+<soap:body parts="parameters" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body parts="parameters" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="eCoffre_v1">
+<wsdl:port name="eCoffre_v1soaphttps" binding="tns:EDD_SRV_eCoffre_V1_0_utils_PossessionCoffre_WSDL_Binder">
+<soap:address location="https://frmseaiwbmi02:7578/ws/eCoffre_v1"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
